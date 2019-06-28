@@ -4,7 +4,7 @@ module Jekyll
       smiley_config = site.config["smiley"]
       return if not smiley_config or not smiley_config["enabled"]
       
-      dir = smiley_config["dir"] || "assets/smileys"
+      dir = smiley_config["dir"] || "smileys"
 
       smileys = {}
 
@@ -33,6 +33,8 @@ module Jekyll
       site = @context.registers[:site].config
 
       smileys = site["smileys"]
+      return message if smileys.nil? or smileys.empty?
+
       message.gsub!(/:([a-z]+):/) do |match|
         smiley = smileys[$1]
         if smiley
