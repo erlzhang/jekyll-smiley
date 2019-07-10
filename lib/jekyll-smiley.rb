@@ -11,11 +11,10 @@ module Jekyll
       begin
         Dir.foreach(dir) do |filename|
           if filename.chars.first != "." 
-            basename = File.basename(filename, '.gif')
-            name = basename.split("_").last
+            name = File.basename(filename, File.extname(filename))
             smiley = {
               "name" => name,
-              "img" => "/#{dir}/#{filename}",
+              "img" => File.join("/", dir, filename),
               "slug" => ":#{name}:"
             }
             smileys[name] = smiley
